@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Баллады | AYROHANT</title>
+    <link rel="stylesheet" href="/styles.css?v=17">
+    <link rel="stylesheet" href="/cinema.css?v=1">
+  </head>
+  <body class="ballads-page">
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/">AYROHANT</a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="top-nav" data-nav>
+        <a href="/#chronicles">Хроники</a>
+        <a href="/reader.html">Манга</a>
+        <a href="/ballads.html">Баллады</a>
+        <a href="/legends.html">Сказания</a>
+        <a href="/wiki.html">Некрономикон</a>
+        <a href="/map.html">Карта</a>
+        <a href="/#sources">Источники</a>
+        <a href="/admin.html" class="nav-icon-link" aria-label="Админка"><span class="icon-cog"></span></a>
+      </nav>
+      <div class="theme-switcher" aria-label="Тема сайта">
+        <button class="theme-dot ember active" type="button" data-theme-choice="ember" aria-label="Огненная тема"><span class="icon-flame"></span></button>
+        <button class="theme-dot arcane" type="button" data-theme-choice="arcane" aria-label="Сине-фиолетовая тема"><span class="icon-moon"></span></button>
+        <button class="theme-dot mono" type="button" data-theme-choice="mono" aria-label="Чёрно-белая тема"><span class="icon-mono"></span></button>
+      </div>
+    </header>
+
+    <main class="ballads-main">
+      <section class="ballad-carousel" data-ballad-shell>
+        <button class="ballad-arrow left" type="button" data-ballad-prev aria-label="Предыдущий плейлист">‹</button>
+        <article class="ballad-feature" data-ballad-feature></article>
+        <button class="ballad-arrow right" type="button" data-ballad-next aria-label="Следующий плейлист">›</button>
+      </section>
+
+      <section class="ballad-detail" data-ballad-detail hidden>
+        <div class="ballad-detail-head" data-ballad-detail-head></div>
+        <div class="ballad-search-row">
+          <input type="search" placeholder="Поиск трека" data-track-search>
+        </div>
+        <div class="track-list" data-track-list></div>
+      </section>
+    </main>
+
+    <aside class="lyrics-drawer" data-lyrics-drawer hidden>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть">×</button>
+      <div data-drawer-content></div>
+    </aside>
+
+    <section class="audio-dock" data-audio-dock hidden>
+      <div class="dock-track">
+        <img src="" alt="" data-dock-cover>
+        <div>
+          <strong data-dock-title></strong>
+          <span data-dock-artist></span>
+        </div>
+      </div>
+      <div class="dock-controls">
+        <button type="button" data-track-prev aria-label="Предыдущий трек">‹</button>
+        <button class="dock-play" type="button" data-play-toggle aria-label="Воспроизвести">▶</button>
+        <button type="button" data-track-next aria-label="Следующий трек">›</button>
+        <button class="dock-text" type="button" data-open-track-text>Текст</button>
+      </div>
+      <span data-current-time>0:00</span>
+      <input type="range" min="0" max="100" value="0" data-progress>
+      <span data-duration>0:00</span>
+      <audio data-audio></audio>
+    </section>
+
+    <script src="/nav.js?v=17"></script>
+    <script src="/ballads.js?v=17"></script>
+  </body>
+</html>

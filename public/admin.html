@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Админка | AYROHANT</title>
+    <link rel="stylesheet" href="/styles.css?v=17">
+    <link rel="stylesheet" href="/cinema.css?v=1">
+  </head>
+  <body class="admin-body">
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/">AYROHANT</a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="top-nav" data-nav>
+        <a href="/#chronicles">Хроники</a>
+        <a href="/reader.html">Манга</a>
+        <a href="/ballads.html">Баллады</a>
+        <a href="/legends.html">Сказания</a>
+        <a href="/wiki.html">Некрономикон</a>
+        <a href="/map.html">Карта</a>
+        <a href="/#sources">Источники</a>
+        <a href="/admin.html" class="nav-icon-link active" aria-label="Админка"><span class="icon-cog"></span></a>
+      </nav>
+      <div class="theme-switcher" aria-label="Тема сайта">
+        <button class="theme-dot ember active" type="button" data-theme-choice="ember" aria-label="Огненная тема"><span class="icon-flame"></span></button>
+        <button class="theme-dot arcane" type="button" data-theme-choice="arcane" aria-label="Сине-фиолетовая тема"><span class="icon-moon"></span></button>
+        <button class="theme-dot mono" type="button" data-theme-choice="mono" aria-label="Чёрно-белая тема"><span class="icon-mono"></span></button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-hero">
+        <div>
+          <p class="eyebrow">Панель хранителя архива</p>
+          <h1>Редактирование контента</h1>
+        </div>
+        <form class="login-bar" data-login-form>
+          <label>Логин<input type="text" autocomplete="username" data-admin-login></label>
+          <label>Пароль<input type="password" autocomplete="current-password" data-admin-token></label>
+          <button class="button primary" type="submit">Войти</button>
+        </form>
+      </section>
+
+      <div class="admin-status" data-admin-status>Админка ждёт пароль.</div>
+
+      <form class="admin-workspace" data-admin-form hidden>
+        <div class="admin-commandbar">
+          <strong>Управление сайтом</strong><span data-save-state role="status">Все изменения сохранены</span>
+          <button class="button primary" type="submit">Сохранить</button>
+          <button class="button ghost" type="button" data-admin-logout>Выйти</button>
+        </div>
+        <aside class="admin-sidebar">
+          <a href="#site" data-admin-nav="site">Основное</a>
+          <a href="#twitch-admin" data-admin-nav="twitch-admin">Twitch</a>
+          <a href="#news-admin" data-admin-nav="news-admin">Новости <span data-count="news">0</span></a>
+          <a href="#volumes" data-admin-nav="volumes">Манга <span data-count="volumes">0</span></a>
+          <a href="#ballads-admin" data-admin-nav="ballads-admin">Баллады <span data-count="ballads">0</span></a>
+          <a href="#legends-admin" data-admin-nav="legends-admin">Сказания <span data-count="legends">0</span></a>
+          <a href="#characters-admin" data-admin-nav="characters-admin">Персонажи <span data-count="characters">0</span></a>
+          <a href="#map" data-admin-nav="map">Локации и карта <span data-count="locations">0</span></a>
+          <a href="#socials-admin" data-admin-nav="socials-admin">Соцсети <span data-count="socials">0</span></a>
+        </aside>
+
+        <div class="admin-grid">
+          <section class="admin-panel" id="site">
+            <div class="panel-title"><div><h2>Основное</h2><p>Название, первый экран и подвал сайта.</p></div></div>
+            <div class="form-grid" data-site-fields></div>
+          </section>
+          <section class="admin-panel" id="twitch-admin">
+            <div class="panel-title"><div><h2>Twitch</h2><p>Канал без ссылки целиком: только ник после twitch.tv/.</p></div></div>
+            <div class="form-grid" data-twitch-fields></div>
+          </section>
+          <section class="admin-panel" id="news-admin">
+            <div class="panel-title"><div><h2>Новости</h2><p>Карточки на главной странице.</p></div><button class="button ghost" type="button" data-add="news">Добавить новость</button></div>
+            <div class="stack" data-editor="news"></div>
+          </section>
+          <section class="admin-panel" id="volumes">
+            <div class="panel-title"><div><h2>Тома, главы, страницы</h2><p>Главная зона для манги: том -> глава -> страница.</p></div><button class="button ghost" type="button" data-add="volumes">Добавить том</button></div>
+            <div class="stack" data-editor="volumes"></div>
+          </section>
+          <section class="admin-panel" id="ballads-admin">
+            <div class="panel-title"><div><h2>Баллады</h2><p>Плейлисты, соло-треки, обложки, фоны, аудио и тексты треков.</p></div><button class="button ghost" type="button" data-add="ballads">Добавить плейлист</button></div>
+            <div class="asset-guide"><strong>Размеры и файлы</strong><span>Обложка плейлиста: 1000 x 1000 px. Фон плейлиста: 2400 x 1400 px или больше. Аудио: mp3, wav, ogg или m4a.</span></div>
+            <div class="stack" data-editor="ballads"></div>
+          </section>
+          <section class="admin-panel" id="legends-admin">
+            <div class="panel-title"><div><h2>Сказания</h2><p>Видеоархив: серии, отдельные эпизоды, варианты качества и главы на временной шкале.</p></div><button class="button ghost" type="button" data-add="legends">Добавить сказание</button></div>
+            <div class="asset-guide"><strong>Размеры и файлы</strong><span>Обложка: 1600 x 900 px. Видео: mp4 или webm до 350 MB. Для качеств добавьте несколько файлов одного эпизода.</span></div>
+            <div class="stack" data-editor="legends"></div>
+          </section>
+          <section class="admin-panel" id="characters-admin">
+            <div class="panel-title"><div><h2>Вики: персонажи</h2><p>Карточки героев для некрономикона.</p></div><button class="button ghost" type="button" data-add="characters">Добавить персонажа</button></div>
+            <div class="asset-guide"><strong>Размеры изображений</strong><span>Портрет персонажа: 900 x 1200 px, вертикальный формат 3:4.</span></div>
+            <div class="stack" data-editor="characters"></div>
+          </section>
+          <section class="admin-panel" id="map">
+            <div class="panel-title"><div><h2>Вики: локации и карта</h2><p>Локации показываются в некрономиконе и на карте. X/Y задают положение пина.</p></div><button class="button ghost" type="button" data-add="locations">Добавить локацию</button></div>
+            <div class="asset-guide"><strong>Размеры изображений</strong><span>Фон карты: 2400 x 1600 px или больше. Изображение локации: 640 x 640 px.</span></div>
+            <div class="form-grid map-settings" data-map-fields></div>
+            <div class="admin-map-editor"><div class="admin-map-board" data-admin-map></div><div class="admin-pin-list" data-admin-pin-list></div></div>
+            <div class="stack" data-editor="locations"></div>
+          </section>
+          <section class="admin-panel" id="socials-admin">
+            <div class="panel-title"><div><h2>Соцсети</h2><p>Ссылки на площадки, источники творчества, донаты и видео.</p></div><button class="button ghost" type="button" data-add="socials">Добавить ссылку</button></div>
+            <div class="stack" data-editor="socials"></div>
+          </section>
+        </div>
+      </form>
+    </main>
+
+    <script src="/nav.js?v=17"></script>
+    <script src="/admin.js?v=17"></script>
+  </body>
+</html>

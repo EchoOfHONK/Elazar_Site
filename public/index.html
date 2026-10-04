@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AYROHANT | Скетчбук Элазара</title>
+    <meta name="description" content="Манга, персонажи, интерактивная карта, соцсети и Twitch-канал в стиле тёмного фэнтези 90-х.">
+    <link rel="stylesheet" href="/styles.css?v=17">
+    <link rel="stylesheet" href="/cinema.css?v=1">
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" data-site-title>AYROHANT</a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="top-nav" data-nav>
+        <a href="/#chronicles">Хроники</a>
+        <a href="/reader.html">Манга</a>
+        <a href="/ballads.html">Баллады</a>
+        <a href="/legends.html">Сказания</a>
+        <a href="/wiki.html">Некрономикон</a>
+        <a href="/map.html">Карта</a>
+        <a href="/#sources">Источники</a>
+        <a class="nav-icon-link" href="/admin.html" aria-label="Админка"><span class="icon-cog"></span></a>
+      </nav>
+      <div class="theme-switcher" aria-label="Тема сайта">
+        <button class="theme-dot ember active" type="button" data-theme-choice="ember" aria-label="Огненная тема"><span class="icon-flame"></span></button>
+        <button class="theme-dot arcane" type="button" data-theme-choice="arcane" aria-label="Сине-фиолетовая тема"><span class="icon-moon"></span></button>
+        <button class="theme-dot mono" type="button" data-theme-choice="mono" aria-label="Чёрно-белая тема"><span class="icon-mono"></span></button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow" data-site-subtitle>Скетчбук Элазара</p>
+          <h1 data-site-hero-title>Хроники под кровавой луной</h1>
+          <p data-site-hero-text>Манга, заметки о мире, персонажи и карта, которая будет оживать по мере выхода истории.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="/reader.html">Открыть читалку</a>
+            <a class="button ghost" href="/map.html">Открыть карту</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section compact" id="chronicles">
+        <div class="section-head"><div><h2 data-site-subtitle-copy>Скетчбук Элазара</h2><p data-site-tagline>Подвал 2D художника и аниматора под псевдонимом MR.LAZARUS</p></div></div>
+        <div class="news-grid" data-news></div>
+      </section>
+
+      <section class="section" id="reader">
+        <div class="section-head"><div><h2>Манга</h2><p>Тома, главы и страницы открываются в отдельной удобной читалке.</p></div></div>
+        <div class="portal-grid manga-entry-grid"><a class="portal-card" href="/reader.html"><span class="portal-icon icon-book"></span><strong>Открыть читалку</strong><p>Выбор тома и главы, перелистывание, просмотр страниц с изображениями.</p></a></div>
+      </section>
+
+      <section class="section" id="map">
+        <div class="section-head"><div><h2>Интерактивная карта</h2><p>Карта мира с отмеченными местами истории.</p></div></div>
+        <iframe class="home-minimap" src="/map.html?embed=1" title="Интерактивная мини-карта мира" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+      </section>
+
+      <section class="section" id="ballads">
+        <div class="section-head"><div><h2>Баллады</h2><p>Плейлисты и соло-треки с тематическими фонами, списком композиций, плеером и текстами треков.</p></div></div>
+        <div class="portal-grid manga-entry-grid"><a class="portal-card" href="/ballads.html"><span class="portal-icon icon-tome"></span><strong>Открыть баллады</strong><p>Выбор плейлистов стрелками, музыкальный плеер и сайдмодал с текстом трека.</p></a></div>
+      </section>
+
+      <section class="section" id="legends">
+        <div class="section-head"><div><h2>Сказания</h2><p>Видеоархив мира: отдельные истории, серии и главы с навигацией по эпизодам.</p></div></div>
+        <div class="portal-grid manga-entry-grid"><a class="portal-card" href="/legends.html"><span class="portal-icon icon-tome"></span><strong>Открыть сказания</strong><p>Локальные видео, главы, выбор качества и скорости, режим широкого экрана и полноэкранный просмотр.</p></a></div>
+      </section>
+
+      <section class="section" id="characters">
+        <div class="section-head"><div><h2>Персонажи</h2><p>Краткий некрономикон для героев. Полная база мира живёт на отдельной странице.</p></div><a class="button ghost" href="/wiki.html">Вся вики</a></div>
+        <div class="character-grid" data-characters></div>
+      </section>
+
+      <section class="section two-column" id="sources">
+        <div><div class="section-head"><div><h2>Соцсети и источники</h2><p>Все внешние площадки и архивы творчества в одном месте.</p></div></div><div class="source-list" data-socials></div></div>
+        <div id="twitch"><div class="section-head"><div><h2 data-twitch-title>Прямой эфир</h2><p data-twitch-note>Статус Twitch виден в плеере, переход открывает канал.</p></div></div><div class="twitch-box"><iframe title="Twitch player" allowfullscreen data-twitch-frame></iframe><a class="button primary" target="_blank" rel="noreferrer" data-twitch-link>Перейти на Twitch</a></div></div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-footer>© 2026 Скетчбук Элазара</footer>
+    <script src="/nav.js?v=17"></script>
+    <script src="/app.js?v=17"></script>
+  </body>
+</html>

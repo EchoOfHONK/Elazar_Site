@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Читалка | AYROHANT</title>
+    <link rel="stylesheet" href="/styles.css?v=17">
+    <link rel="stylesheet" href="/cinema.css?v=1">
+  </head>
+  <body class="reader-page">
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/">AYROHANT</a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
+      <nav class="top-nav" data-nav>
+        <a href="/#chronicles">Хроники</a><a href="/reader.html">Манга</a><a href="/ballads.html">Баллады</a><a href="/legends.html">Сказания</a><a href="/wiki.html">Некрономикон</a><a href="/map.html">Карта</a><a href="/#sources">Источники</a><a href="/admin.html" class="nav-icon-link" aria-label="Админка"><span class="icon-cog"></span></a>
+      </nav>
+      <div class="theme-switcher" aria-label="Тема сайта"><button class="theme-dot ember active" type="button" data-theme-choice="ember" aria-label="Огненная тема"><span class="icon-flame"></span></button><button class="theme-dot arcane" type="button" data-theme-choice="arcane" aria-label="Сине-фиолетовая тема"><span class="icon-moon"></span></button><button class="theme-dot mono" type="button" data-theme-choice="mono" aria-label="Чёрно-белая тема"><span class="icon-mono"></span></button></div>
+    </header>
+    <main class="reader-main">
+      <section class="reader-shell full-reader">
+        <aside class="reader-sidebar"><p class="eyebrow">Манга</p><h1>Читалка</h1><label>Том<select data-volume-select></select></label><label>Глава<select data-chapter-select></select></label><div class="chapter-meta" data-chapter-meta></div><div class="page-strip" data-page-strip></div></aside>
+        <article class="reader-panel"><div class="reader-toolbar"><button class="icon-button" type="button" data-page-prev aria-label="Предыдущая страница">‹</button><div class="reader-count" data-page-count>0 / 0</div><button class="icon-button" type="button" data-page-next aria-label="Следующая страница">›</button></div><div class="page-stage" data-page-stage></div></article>
+      </section>
+    </main>
+    <script src="/nav.js?v=17"></script>
+    <script src="/reader.js?v=17"></script>
+  </body>
+</html>
