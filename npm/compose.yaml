@@ -1,0 +1,30 @@
+# Used only when the installer finds no existing Nginx Proxy Manager.
+name: elazar-npm
+services:
+  npm:
+    image: jc21/nginx-proxy-manager:2.16.0
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "127.0.0.1:81:81"
+    environment:
+      TZ: Europe/Moscow
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    networks: [proxy]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  npm_data:
+    name: npm_data
+  npm_letsencrypt:
+    name: npm_letsencrypt
+networks:
+  proxy:
+    external: true
+    name: ${ELAZAR_PROXY_NETWORK:-proxy}

@@ -3,4 +3,5 @@
 !.env.example
 *.log
 design-check/
-
+.deploy.env
+__pycache__/

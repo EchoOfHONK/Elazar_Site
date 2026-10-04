@@ -1,0 +1,35 @@
+name: elazar
+services:
+  elazar-site:
+    build: .
+    image: elazar-site:local
+    restart: unless-stopped
+    init: true
+    env_file: .env
+    environment:
+      PORT: "3000"
+      NODE_ENV: production
+    expose: ["3000"]
+    ports:
+      - "127.0.0.1:${ELAZAR_PREVIEW_PORT:-3000}:3000"
+    volumes:
+      - elazar_data:/app/data
+      - elazar_uploads:/app/public/assets/uploads
+    networks: [proxy]
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  elazar_data:
+    name: elazar_data
+  elazar_uploads:
+    name: elazar_uploads
+networks:
+  proxy:
+    external: true
+    name: ${ELAZAR_PROXY_NETWORK:-proxy}

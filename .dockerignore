@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+.deploy.env
+node_modules
+design-check
+deploy
+npm
+outputs
+work
+backups
+*.log
+*.zip
+**/.DS_Store
