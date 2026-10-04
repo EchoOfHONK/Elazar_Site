@@ -42,13 +42,11 @@ a,button { transition: background-color .18s ease, border-color .18s ease, color
 .nav-icon-link { width: 30px; height: 30px; min-height: 30px; padding: 4px; border-radius: 50%; border: 1px solid #ffffff55; background: transparent; }
 .icon-cog { transform: scale(.7); }
 .hero { min-height: 590px; height: calc(100svh - 210px); max-height: 920px; padding: 68px 6%; align-items: center; border: 0; }
-.hero-media,[data-theme="arcane"] .hero-media,[data-theme="mono"] .hero-media { background-image: linear-gradient(90deg,#080b0c9e,transparent 48%,#080b0c66),linear-gradient(0deg,#101111,transparent 30%),url('/assets/cinema-hero.png'); background-size: cover; background-position: center; filter: none; transform: none; }
-[data-theme="arcane"] .hero-media { filter: hue-rotate(18deg); }
-[data-theme="mono"] .hero-media { filter: grayscale(1); }
+.hero-media { --hero-overlay: linear-gradient(90deg,#0000009e,transparent 48%,#0008); }
 .hero-copy { display: grid; grid-template-columns: minmax(0,1fr) minmax(240px,300px); column-gap: 28%; align-items: center; max-width: none; width: 100%; }
 .hero-copy .eyebrow { grid-column: 1; font-size: 11px; color: var(--text); font-weight: 500; margin-bottom: 24px; }
-.hero-copy h1 { grid-column: 1; grid-row: 2 / span 2; font-size: 76px; max-width: 480px; text-transform: uppercase; line-height: 1.02; color: #f5f3df; text-shadow: 0 2px 16px #0008; overflow-wrap: anywhere; }
-.hero-copy p:not(.eyebrow) { grid-column: 2; grid-row: 2; color: #f5f3df; font-size: 16px; text-shadow: 0 2px 5px #000; margin: 0 0 24px; }
+.hero-copy h1 { grid-column: 1; grid-row: 2 / span 2; font-size: 76px; max-width: 480px; text-transform: uppercase; line-height: 1.02; color: var(--text); text-shadow: 0 2px 16px #0008; overflow-wrap: anywhere; }
+.hero-copy p:not(.eyebrow) { grid-column: 2; grid-row: 2; color: var(--text); font-size: 16px; text-shadow: 0 2px 5px #000; margin: 0 0 24px; }
 .hero-actions { grid-column: 2; grid-row: 3; align-self: start; gap: 10px; flex-wrap: wrap; }
 .button,.button.primary,.button.ghost { min-height: 38px; padding: 10px 16px; border-radius: 2px; font-family: Arial,sans-serif; font-size: 11px; font-weight: 700; box-shadow: none; text-shadow: none; }
 .button.primary { background: var(--gold); color: #141613; border: 1px solid var(--gold); }
@@ -149,7 +147,7 @@ input[type="range"] { accent-color: var(--gold); }
   .theme-dot,.theme-dot.ember,.theme-dot.arcane,.theme-dot.mono { width: 16px; height: 16px; }
   .nav-toggle { width: 30px; height: 32px; flex-basis: 30px; }
   .hero { min-height: 620px; height: calc(100svh - 170px); max-height: none; padding: 35px 24px; align-items: end; }
-  .hero-media,[data-theme] .hero-media { background-position: 52% center; background-image: linear-gradient(0deg,#101111 3%,#10111155 60%,#10111120),url('/assets/cinema-hero.png'); }
+  .hero-media { --hero-overlay: linear-gradient(0deg,#000b 3%,#0005 55%,#0001); background-position: 50% center; }
   .hero-copy { display: block; }
   .hero-copy .eyebrow { margin-bottom: 14px; }
   .hero-copy h1 { font-size: 46px; max-width: 350px; margin-bottom: 20px; }
@@ -273,8 +271,6 @@ body :is(h1,h2,h3,p,a,strong,span,small) { text-shadow:none; }
 .button.primary { background:var(--gold); border-color:var(--gold); color:var(--bg); }
 .button.ghost,.portal-card,.source-link { border-color:var(--line); }
 input:not([type="range"]):not([type="checkbox"]),textarea,select { background:var(--bg); border-color:var(--line); }
-[data-theme="arcane"] .hero-media { filter:hue-rotate(165deg) saturate(.65); }
-[data-theme="mono"] .hero-media { filter:grayscale(1); }
 [data-admin-nav="volumes"],.admin-main #volumes { display:none !important; }
 .wiki-grid,.location-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
 .wiki-entry { display:grid; grid-template-columns:100px minmax(0,1fr); gap:22px; padding:22px; border:1px solid var(--line); border-radius:6px; text-decoration:none; }
@@ -305,7 +301,6 @@ h1,h2,.brand,.hero-copy h1,.wiki-entry h3,.portal-card strong { font-family:'Cor
 .ballad-copy h1 { font-size:54px; line-height:1.08; overflow-wrap:anywhere; }
 .section-head h2 { font-size:36px; }
 .content-card p,.wiki-entry p { line-height:1.75; }
-.hero-media,[data-theme] .hero-media { background-image:linear-gradient(90deg,#080b0c9e,transparent 48%,#080b0c66),linear-gradient(0deg,var(--bg),transparent 30%),var(--hero-image,url('/assets/cinema-hero.png')); }
 .ballad-carousel { grid-template-columns:44px minmax(0,1fr) 44px; gap:20px; }
 .ballad-feature,.ballad-copy { min-width:0; }
 .ballad-arrow { position:relative; z-index:2; display:flex; justify-content:center; align-items:center; padding:0; width:44px; height:44px; line-height:1; flex-shrink:0; }
@@ -317,7 +312,6 @@ h1,h2,.brand,.hero-copy h1,.wiki-entry h3,.portal-card strong { font-family:'Cor
   .ballad-copy h1 { font-size:34px; }
   .ballad-carousel { grid-template-columns:36px minmax(0,1fr) 36px; gap:6px; }
   .ballad-arrow { width:36px; height:36px; }
-  .hero-media,[data-theme] .hero-media { background-image:linear-gradient(0deg,var(--bg) 3%,#10111155 60%,#10111120),var(--hero-image,url('/assets/cinema-hero.png')); }
 }
 .admin-body .admin-main { width:min(1280px,94%); padding:24px 0 60px; }
 .admin-unlocked .admin-hero { display:none; }
@@ -392,3 +386,10 @@ h1,h2,.brand,.hero-copy h1,.wiki-entry h3,.portal-card strong { font-family:'Cor
 .admin-body .admin-map-board { height:auto; aspect-ratio:3/2; }
 @media(max-width:600px) { .map-page-layout > .zoom-control { width:210px; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition: none !important; } }
+/* Home settings use the same editor controls, with groups instead of a long form. */
+.admin-body .home-settings-group { margin:12px 0; border:1px solid var(--line); border-radius:10px; background:var(--panel); }
+.admin-body .home-settings-group > summary { padding:16px 18px; cursor:pointer; color:var(--text); font-weight:600; font-size:14px; }
+.admin-body .home-settings-group > .form-grid { padding:4px 18px 20px; }
+.admin-body .home-settings-note { color:var(--muted); font-size:12px; line-height:1.6; }
+.admin-body .home-checkbox-field { display:flex; align-items:center; gap:10px; align-self:center; cursor:pointer; }
+.admin-body .home-checkbox-field input[type='checkbox'] { width:18px; height:18px; min-height:0; margin:0; accent-color:var(--gold); }

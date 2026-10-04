@@ -3,85 +3,97 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AYROHANT | Скетчбук Элазара</title>
-    <meta name="description" content="Манга, персонажи, интерактивная карта, соцсети и Twitch-канал в стиле тёмного фэнтези 90-х.">
-    <link rel="stylesheet" href="/styles.css?v=17">
-    <link rel="stylesheet" href="/cinema.css?v=1">
+    <title>Скетчбук Элазара</title>
+    <meta name="description" content="Авторский фэнтези-мир: иллюстрации, баллады, сказания, персонажи и интерактивная карта.">
+    <link rel="stylesheet" href="/styles.css?v=18">
+    <link rel="stylesheet" href="/cinema.css?v=2">
+    <link rel="stylesheet" href="/home.css?v=2">
   </head>
-  <body>
-    <div class="noise" aria-hidden="true"></div>
-    <header class="site-header">
-      <a class="brand" href="#top" data-site-title>AYROHANT</a>
-      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" data-nav-toggle><span></span><span></span><span></span></button>
-      <nav class="top-nav" data-nav>
-        <a href="/#chronicles">Хроники</a>
-        <a href="/reader.html">Манга</a>
-        <a href="/ballads.html">Баллады</a>
-        <a href="/legends.html">Сказания</a>
-        <a href="/wiki.html">Некрономикон</a>
-        <a href="/map.html">Карта</a>
-        <a href="/#sources">Источники</a>
-        <a class="nav-icon-link" href="/admin.html" aria-label="Админка"><span class="icon-cog"></span></a>
-      </nav>
-      <div class="theme-switcher" aria-label="Тема сайта">
-        <button class="theme-dot ember active" type="button" data-theme-choice="ember" aria-label="Огненная тема"><span class="icon-flame"></span></button>
-        <button class="theme-dot arcane" type="button" data-theme-choice="arcane" aria-label="Сине-фиолетовая тема"><span class="icon-moon"></span></button>
-        <button class="theme-dot mono" type="button" data-theme-choice="mono" aria-label="Чёрно-белая тема"><span class="icon-mono"></span></button>
+  <body class="home-body">
+    <header class="home-header">
+      <a class="home-brand" href="/#top" data-site-title>СКЕТЧБУК ЭЛАЗАРА</a>
+      <div class="home-header-tools">
+        <div class="theme-switcher" aria-label="Тема сайта">
+          <button class="theme-dot ember active" type="button" data-theme-choice="ember" aria-label="Огненная тема"></button>
+          <button class="theme-dot arcane" type="button" data-theme-choice="arcane" aria-label="Сине-фиолетовая тема"></button>
+          <button class="theme-dot mono" type="button" data-theme-choice="mono" aria-label="Чёрно-белая тема"></button>
+        </div>
+        <a class="home-admin" href="/admin.html" aria-label="Админка" title="Админка"><i data-lucide="settings" aria-hidden="true"></i></a>
       </div>
     </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="hero-media" aria-hidden="true"></div>
-        <div class="hero-copy">
-          <p class="eyebrow" data-site-subtitle>Скетчбук Элазара</p>
-          <h1 data-site-hero-title>Хроники под кровавой луной</h1>
-          <p data-site-hero-text>Манга, заметки о мире, персонажи и карта, которая будет оживать по мере выхода истории.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="/reader.html">Открыть читалку</a>
-            <a class="button ghost" href="/map.html">Открыть карту</a>
+    <main class="home-main" id="top">
+      <div class="home-intro">
+        <div><p class="home-eyebrow" data-home-intro-eyebrow>Добро пожаловать в мастерскую</p><h2 data-home-intro-title>Выбери свою историю</h2></div>
+      </div>
+      <p class="home-error" data-home-error role="status" hidden></p>
+      <div class="home-grid" aria-label="Разделы сайта">
+        <section class="home-card home-welcome" aria-labelledby="home-welcome-title">
+          <div class="hero-media" aria-hidden="true"></div>
+          <div class="home-welcome-copy">
+            <span class="home-kicker"><i data-home-hero-icon data-lucide="sparkles" aria-hidden="true"></i><span data-home-kicker>Скетчбук Элазара</span></span>
+            <h1 id="home-welcome-title" data-home-heading>Мир в рисунках<br>и историях</h1>
+            <p data-site-hero-text>Открой для себя что-то новое...</p>
+            <a class="home-welcome-link" href="/wiki.html"><span data-home-action-text>Исследовать мир</span> <span aria-hidden="true">↗</span></a>
           </div>
-        </div>
-      </section>
-
-      <section class="section compact" id="chronicles">
-        <div class="section-head"><div><h2 data-site-subtitle-copy>Скетчбук Элазара</h2><p data-site-tagline>Подвал 2D художника и аниматора под псевдонимом MR.LAZARUS</p></div></div>
-        <div class="news-grid" data-news></div>
-      </section>
-
-      <section class="section" id="reader">
-        <div class="section-head"><div><h2>Манга</h2><p>Тома, главы и страницы открываются в отдельной удобной читалке.</p></div></div>
-        <div class="portal-grid manga-entry-grid"><a class="portal-card" href="/reader.html"><span class="portal-icon icon-book"></span><strong>Открыть читалку</strong><p>Выбор тома и главы, перелистывание, просмотр страниц с изображениями.</p></a></div>
-      </section>
-
-      <section class="section" id="map">
-        <div class="section-head"><div><h2>Интерактивная карта</h2><p>Карта мира с отмеченными местами истории.</p></div></div>
-        <iframe class="home-minimap" src="/map.html?embed=1" title="Интерактивная мини-карта мира" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
-      </section>
-
-      <section class="section" id="ballads">
-        <div class="section-head"><div><h2>Баллады</h2><p>Плейлисты и соло-треки с тематическими фонами, списком композиций, плеером и текстами треков.</p></div></div>
-        <div class="portal-grid manga-entry-grid"><a class="portal-card" href="/ballads.html"><span class="portal-icon icon-tome"></span><strong>Открыть баллады</strong><p>Выбор плейлистов стрелками, музыкальный плеер и сайдмодал с текстом трека.</p></a></div>
-      </section>
-
-      <section class="section" id="legends">
-        <div class="section-head"><div><h2>Сказания</h2><p>Видеоархив мира: отдельные истории, серии и главы с навигацией по эпизодам.</p></div></div>
-        <div class="portal-grid manga-entry-grid"><a class="portal-card" href="/legends.html"><span class="portal-icon icon-tome"></span><strong>Открыть сказания</strong><p>Локальные видео, главы, выбор качества и скорости, режим широкого экрана и полноэкранный просмотр.</p></a></div>
-      </section>
-
-      <section class="section" id="characters">
-        <div class="section-head"><div><h2>Персонажи</h2><p>Краткий некрономикон для героев. Полная база мира живёт на отдельной странице.</p></div><a class="button ghost" href="/wiki.html">Вся вики</a></div>
-        <div class="character-grid" data-characters></div>
-      </section>
-
-      <section class="section two-column" id="sources">
-        <div><div class="section-head"><div><h2>Соцсети и источники</h2><p>Все внешние площадки и архивы творчества в одном месте.</p></div></div><div class="source-list" data-socials></div></div>
-        <div id="twitch"><div class="section-head"><div><h2 data-twitch-title>Прямой эфир</h2><p data-twitch-note>Статус Twitch виден в плеере, переход открывает канал.</p></div></div><div class="twitch-box"><iframe title="Twitch player" allowfullscreen data-twitch-frame></iframe><a class="button primary" target="_blank" rel="noreferrer" data-twitch-link>Перейти на Twitch</a></div></div>
-      </section>
+          <span class="home-welcome-stamp" aria-hidden="true"><span data-home-stamp>ELAZAR</span><br><small data-home-stamp-caption>WORLD ARCHIVE</small></span>
+        </section>
+        <a class="home-card home-map" data-home-card="map" id="map" href="/map.html">
+          <div class="home-map-art" aria-hidden="true">
+            <svg class="home-atlas-lines" viewBox="0 0 360 280" preserveAspectRatio="xMidYMid slice">
+              <path class="map-contour" d="M-20 110 30 78 68 102 120 44 152 78 200 30 235 76 294 45 385 110M-20 146 56 123 89 149 141 100 181 130 218 94 259 142 319 117 385 154M-20 236 38 205 88 224 134 180 182 210 236 171 286 200 385 177"/>
+              <path class="map-route" d="M88 69 Q120 105 100 126 T151 168 Q182 187 184 207 T252 87"/>
+              <g class="map-points"><circle cx="252" cy="87" r="6"/><circle cx="184" cy="207" r="5"/><circle cx="100" cy="126" r="5"/><circle cx="151" cy="168" r="5"/><circle cx="88" cy="69" r="5"/></g>
+            </svg>
+            <svg class="home-map-compass" viewBox="0 0 160 160" fill="none">
+              <circle cx="80" cy="80" r="67"/><circle cx="80" cy="80" r="59"/><circle cx="80" cy="80" r="43" stroke-dasharray="1 7"/>
+              <path class="compass-ticks" d="M80 5v16M80 139v16M5 80h16M139 80h16M27 27l11 11M122 122l11 11M27 133l11-11M122 38l11-11"/>
+              <path class="compass-shade" d="m80 14 12 54 54 12-54 12-12 54-12-54-54-12 54-12Z"/>
+              <path class="compass-light" d="m80 14 12 54-12 12-12-12ZM146 80l-54 12-12-12 12-12ZM80 146 68 92l12-12 12 12ZM14 80l54-12 12 12-12 12Z"/>
+              <path class="compass-diagonal" d="m43 43 29 23 8 14-14-8Zm74 0-23 29-14 8 8-14Zm0 74-29-23-8-14 14 8Zm-74 0 23-29 14-8-8 14Z"/>
+              <circle cx="80" cy="80" r="5" class="compass-center"/>
+            </svg>
+          </div>
+          <div class="home-card-top"><span class="home-card-label"><i data-home-icon data-lucide="compass" aria-hidden="true"></i><span data-home-label>Путеводитель</span></span><span class="home-card-arrow" aria-hidden="true">↗</span></div>
+          <div class="home-card-copy"><h2 data-home-title>Карта мира</h2><p data-home-description>Места, хранящие свои тайны</p><span class="home-card-meta" data-home-map-count>Локации и маршруты</span></div>
+        </a>
+        <a class="home-card home-news" data-home-card="chronicles" id="chronicles" href="#chronicles" aria-haspopup="dialog">
+          <div class="home-card-top"><span class="home-card-label"><i data-home-icon data-lucide="scroll-text" aria-hidden="true"></i><span data-home-label>Доска объявлений</span></span><span class="home-card-arrow" aria-hidden="true">↗</span></div>
+          <div class="home-notice-board" data-home-notice-board aria-hidden="true">
+            <div class="home-notice-paper home-notice-secondary" data-home-notice="2"><span class="home-notice-number" data-home-notice-number2>02</span><span data-home-notice-title2>Из мастерской</span></div>
+            <div class="home-notice-paper home-notice-primary" data-home-notice="1"><span class="home-notice-number" data-home-notice-number1>01</span><span data-home-notice-title1>Новая запись</span><span class="home-notice-rule"></span></div>
+          </div>
+          <div class="home-card-copy"><h2 data-home-title>Хроники</h2><p class="home-news-preview" data-home-news-preview data-home-description>Новости из мастерской</p><span class="home-card-meta" data-home-news-count>Все записи</span></div>
+        </a>
+        <a class="home-card home-ballads" data-home-card="ballads" id="ballads" href="/ballads.html">
+          <div class="home-record" aria-hidden="true"><div class="home-record-label"><img src="/assets/ballads/red-gates-cover.png" alt="" data-home-ballad-art></div><span class="home-record-spindle"></span></div>
+          <div class="home-card-top"><span class="home-card-label"><i data-home-icon data-lucide="headphones" aria-hidden="true"></i><span data-home-label>Музыка</span></span><span class="home-card-arrow" aria-hidden="true">↗</span></div>
+          <div class="home-card-copy"><h2 data-home-title>Баллады</h2><p data-home-description>У каждого мира свой голос</p><span class="home-card-meta" data-home-ballad-count>Плейлисты и композиции</span></div>
+        </a>
+        <a class="home-card home-legends home-art-card" data-home-card="legends" id="legends" href="/legends.html">
+          <img class="home-card-art" src="/assets/dark-fantasy-hero.jpg" alt="" data-home-legend-art>
+          <div class="home-card-top"><span class="home-card-label"><i data-home-icon data-lucide="clapperboard" aria-hidden="true"></i><span data-home-label>Видеоархив</span></span><span class="home-card-arrow" aria-hidden="true">↗</span></div>
+          <div class="home-card-copy"><h2 data-home-title>Сказания</h2><p data-home-description>Истории, оживающие на экране</p><span class="home-card-meta" data-home-legend-count>Истории и эпизоды</span></div>
+        </a>
+        <a class="home-card home-wiki" data-home-card="wiki" id="characters" href="/wiki.html">
+          <div class="home-card-top"><span class="home-card-label"><i data-home-icon data-lucide="book-open" aria-hidden="true"></i><span data-home-label>Энциклопедия</span></span><span class="home-card-arrow" aria-hidden="true">↗</span></div>
+          <div class="home-portraits" data-home-portraits aria-label="Персонажи мира"><img src="/assets/avatars/elazar.png" alt="Элазар"><img src="/assets/avatars/mara.png" alt="Мара"><img src="/assets/avatars/varn.png" alt="Варн"></div>
+          <div class="home-card-copy"><h2 data-home-title>Некрономикон</h2><p data-home-description>Лица и легенды этого мира</p><span class="home-card-meta" data-home-wiki-count>Персонажи и локации</span></div>
+        </a>
+        <section class="home-card home-sources" data-home-card="sources" id="sources" aria-labelledby="home-sources-title">
+          <a class="home-sources-open" data-home-card-link href="#sources" aria-haspopup="dialog" aria-label="Мастерская: соцсети и прямой эфир"></a>
+          <div class="home-card-top"><span class="home-card-label"><i data-home-icon data-lucide="radio" aria-hidden="true"></i><span data-home-label>На связи</span></span><span class="home-card-arrow" aria-hidden="true">↗</span></div>
+          <div class="home-social-symbols" aria-label="Соцсети" data-home-social-links></div>
+          <div class="home-card-copy"><h2 id="home-sources-title" data-home-title>Мастерская</h2><p data-home-description>Соцсети и прямой эфир</p><span class="home-card-meta" data-home-social-count>Все площадки</span></div>
+        </section>
+      </div>
     </main>
-
-    <footer class="site-footer" data-footer>© 2026 Скетчбук Элазара</footer>
+    <footer class="home-footer"><span data-footer>© 2026 Скетчбук Элазара</span><span class="home-footer-mark" aria-hidden="true">✦</span></footer>
+    <dialog class="home-panel" data-home-panel aria-labelledby="home-panel-title">
+      <div class="home-panel-header"><div><p class="home-eyebrow" data-home-panel-eyebrow>Скетчбук Элазара</p><h2 id="home-panel-title" data-home-panel-title>Хроники</h2></div><button class="home-panel-close" type="button" data-close-home-panel aria-label="Закрыть"><i data-lucide="x" aria-hidden="true"></i></button></div>
+      <div class="home-panel-content" data-home-panel-content></div>
+    </dialog>
     <script src="/nav.js?v=17"></script>
-    <script src="/app.js?v=17"></script>
+    <script src="/home-settings.js?v=1"></script>
+    <script src="/home.js?v=2"></script>
   </body>
 </html>

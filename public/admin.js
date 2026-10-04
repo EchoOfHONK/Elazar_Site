@@ -3,6 +3,7 @@ let adminLogin = "";
 let adminToken = "";
 let activeSection = "site";
 let activeLocationIndex = 0;
+let normalizedHomeFor = null;
 
 const $ = (selector) => document.querySelector(selector);
 const THEME_KEY = "ayrohant-theme";
@@ -96,6 +97,77 @@ function addFields(root, object, fields) {
     }
     root.appendChild(field(...item));
   });
+}
+
+function selectField(label, object, key, options, help = "") {
+  const wrapper = document.createElement("label");
+  const caption = document.createElement("span");
+  caption.textContent = label;
+  const select = document.createElement("select");
+  options.forEach((option) => {
+    const [value, text] = Array.isArray(option) ? option : [option, option];
+    const node = document.createElement("option");
+    node.value = value;
+    node.textContent = text;
+    select.appendChild(node);
+  });
+  select.value = object[key];
+  select.addEventListener("change", () => {
+    object[key] = select.value;
+    markDirty();
+  });
+  wrapper.append(caption, select);
+  if (help) {
+    const hint = document.createElement("small");
+    hint.className = "field-help";
+    hint.textContent = help;
+    wrapper.appendChild(hint);
+  }
+  return wrapper;
+}
+
+function checkboxField(label, object, key) {
+  const wrapper = document.createElement("label");
+  wrapper.className = "home-checkbox-field";
+  const input = document.createElement("input");
+  input.type = "checkbox";
+  input.checked = object[key] !== false;
+  input.addEventListener("change", () => {
+    object[key] = input.checked;
+    markDirty();
+  });
+  const caption = document.createElement("span");
+  caption.textContent = label;
+  wrapper.append(input, caption);
+  return wrapper;
+}
+
+function percentageField(label, object, key, help = "") {
+  const wrapper = field(label, object, key, "number", help);
+  const input = wrapper.querySelector("input");
+  input.min = "0";
+  input.max = "100";
+  input.step = "1";
+  input.addEventListener("input", () => {
+    const value = Math.max(0, Math.min(100, Number(input.value) || 0));
+    object[key] = value;
+    if (input.value !== "") input.value = String(value);
+  });
+  return wrapper;
+}
+
+function homeSettingsGroup(root, title, open = false) {
+  const details = document.createElement("details");
+  details.className = "home-settings-group";
+  details.dataset.homeGroup = title;
+  details.open = open;
+  const summary = document.createElement("summary");
+  summary.textContent = title;
+  const fields = document.createElement("div");
+  fields.className = "form-grid";
+  details.append(summary, fields);
+  root.appendChild(details);
+  return fields;
 }
 
 function button(label, onClick, className = "button ghost") {
@@ -379,6 +451,7 @@ function syncPlaylistTrackCovers(playlist, cover) {
 }
 
 function getUploadCropOptions(label, object, key, accept) {
+  if (object === content?.home?.hero?.images || object === content?.home?.appearance || Object.values(content?.home?.cards || {}).includes(object)) return { crop: false };
   if (key === 'heroImage') return { cropAspect: 16 / 9, cropWidth: 2400, cropHeight: 1350, cropTitle: 'Фон главной страницы' };
   if (String(accept || "").includes("audio/") || String(accept || "").includes("video/")) return { crop: false };
 
@@ -455,6 +528,93 @@ function ensureContentShape() {
   if (!content.map) content.map = { image: "" };
   if (!content.ballads) content.ballads = [];
   if (!content.legends) content.legends = [];
+  if (normalizedHomeFor !== content) {
+    content.home = window.HomeSettings.normalize(content.home);
+    normalizedHomeFor = content;
+  }
+}
+
+function renderHome() {
+  const root = $("[data-home-fields]");
+  if (!root) return;
+  const openGroups = new Set(Array.from(root.querySelectorAll(".home-settings-group[open]")).map((node) => node.dataset.homeGroup));
+  const firstRender = !root.children.length;
+  root.replaceChildren();
+  const home = content.home;
+  const group = (title, initial = false) => homeSettingsGroup(root, title, openGroups.has(title) || (firstRender && initial));
+  const iconLabels = {
+    sparkles: "Искры", compass: "Компас", map: "Карта", "scroll-text": "Свиток", headphones: "Наушники", music: "Нота", "disc-3": "Диск", clapperboard: "Хлопушка", film: "Киноплёнка", "book-open": "Открытая книга", library: "Книги", radio: "Эфир", globe: "Мир", feather: "Перо", castle: "Замок", swords: "Мечи", star: "Звезда"
+  };
+  const iconOptions = window.HomeSettings.icons.map((icon) => [icon, iconLabels[icon] || icon]);
+
+  const intro = group("Приветствие", true);
+  addFields(intro, home, [
+    ["Надпись над заголовком", home, "introEyebrow"],
+    ["Заголовок главной", home, "introTitle"],
+  ]);
+
+  const hero = group("Большая карточка мира", true);
+  addFields(hero, home.hero, [
+    ["Подпись карточки мира", home.hero, "kicker"],
+    ["Заголовок карточки мира", content.site, "heroTitle", "textarea", "Пустое поле: «Мир в рисунках и историях». Переносы строк сохраняются."],
+    ["Описание карточки мира", content.site, "heroText", "textarea"],
+    ["Текст кнопки мира", home.hero, "actionText"],
+    ["Ссылка кнопки мира", home.hero, "actionUrl", "text", "Например, /wiki.html или https://example.com."],
+    ["Надпись на печати", home.hero, "stamp"],
+    ["Подпись под печатью", home.hero, "stampCaption"],
+  ]);
+  hero.appendChild(selectField("Значок карточки мира", home.hero, "icon", iconOptions));
+  hero.appendChild(percentageField("Положение фона по горизонтали, %", home.hero, "positionX", "0 — слева, 50 — по центру, 100 — справа. Изображение сохраняет пропорции."));
+  hero.appendChild(percentageField("Положение фона по вертикали, %", home.hero, "positionY", "0 — сверху, 50 — по центру, 100 — снизу."));
+
+  const themeImages = group("Фоны карточки мира по темам");
+  const themes = { ember: "Огненная", arcane: "Сине-фиолетовая", mono: "Чёрно-белая" };
+  Object.entries(themes).forEach(([key, label]) => {
+    themeImages.appendChild(field(`Изображение: ${label} тема`, home.hero.images, key, "text", "Ссылка на изображение. Загруженный файл сохраняет исходные пропорции."));
+    themeImages.appendChild(uploadField(`Загрузить фон: ${label} тема`, home.hero.images, key));
+  });
+  addFields(themeImages, content.site, [
+    ["Единый фон для всех тем", content.site, "heroImage", "text", "Необязательно. Если заполнить, он заменит три тематических фона. Очистите поле, чтобы снова переключать изображения вместе с темой."],
+  ]);
+  themeImages.appendChild(uploadField("Загрузить единый фон карточки мира", content.site, "heroImage"));
+
+  Object.entries(window.HomeSettings.cardNames).forEach(([key, name]) => {
+    const settings = home.cards[key];
+    const fields = group(`Карточка «${name}»`);
+    addFields(fields, settings, [
+      [`Подпись: ${name}`, settings, "label"],
+      [`Название: ${name}`, settings, "title"],
+      [`Описание: ${name}`, settings, "description", "textarea", key === "chronicles" ? "Пустое поле показывает заголовок последней новости на доске." : ""],
+      [`Ссылка: ${name}`, settings, "url", "text", key === "chronicles" || key === "sources" ? "#chronicles открывает доску объявлений, #sources — соцсети и эфир. Можно указать другую страницу или полный адрес." : "Адрес страницы или полный адрес сайта."],
+      [`Подпись внизу: ${name}`, settings, "meta", "text", "Пустое поле включает автоматический счётчик. Свой текст заменяет счётчик."],
+      [`Изображение: ${name}`, settings, "image", "text", key === "ballads" ? "Пустое поле берёт обложку первого плейлиста для этикетки диска." : key === "legends" ? "Пустое поле берёт обложку первого сказания." : "Необязательно. Пустое поле сохраняет стандартное оформление карточки."],
+    ]);
+    fields.appendChild(selectField(`Значок: ${name}`, settings, "icon", iconOptions));
+    fields.appendChild(checkboxField(`Показывать счётчик: ${name}`, settings, "showCount"));
+    fields.appendChild(uploadField(`Загрузить изображение: ${name}`, settings, "image"));
+  });
+
+  const shortcuts = group("Социальные ссылки и портреты");
+  const socialIds = (content.socials || []).map((item) => item.id).filter(Boolean).join(", ");
+  const characterIds = (content.characters || []).map((item) => item.id).filter(Boolean).join(", ");
+  addFields(shortcuts, home, [
+    ["Соцсети на карточке мастерской", home, "socialIds", "text", `ID через запятую, в нужном порядке. Ссылки и названия меняются в разделе «Соцсети». Доступные ID: ${socialIds || "добавьте ссылки в разделе «Соцсети»"}.`],
+    ["Портреты на карточке энциклопедии", home, "portraitIds", "text", `ID через запятую. Пустое поле — первые три персонажа. Доступные ID: ${characterIds || "добавьте персонажей в их разделе"}.`],
+  ]);
+
+  const panels = group("Окна хроник и мастерской");
+  addFields(panels, home.panels, [
+    ["Подпись над заголовком окна", home.panels, "eyebrow"],
+    ["Заголовок окна хроник", home.panels, "chroniclesTitle"],
+    ["Заголовок окна мастерской", home.panels, "sourcesTitle"],
+    ["Текст ссылки на Twitch", home.panels, "streamLinkText"],
+  ]);
+
+  const appearance = group("Спокойный фон страницы");
+  appearance.appendChild(selectField("Фактура страницы", home.appearance, "backgroundStyle", [["atlas", "Линии старого атласа"], ["grain", "Мелкая бумажная фактура"], ["plain", "Без фактуры"]], "Оттенок фона подстраивается под выбранную тему."));
+  appearance.appendChild(percentageField("Заметность фона, %", home.appearance, "backgroundStrength", "0 скрывает оформление; для спокойного фона оставьте небольшое значение."));
+  appearance.appendChild(field("Изображение заднего фона", home.appearance, "backgroundImage", "text", "Необязательно. Показывается приглушённо за карточками, с исходными пропорциями."));
+  appearance.appendChild(uploadField("Загрузить задний фон страницы", home.appearance, "backgroundImage"));
 }
 
 function renderSite() {
@@ -468,10 +628,10 @@ function renderSite() {
     ["Короткое описание", content.site, "tagline", "textarea"],
     ["Заголовок первого экрана", content.site, "heroTitle"],
     ["Текст первого экрана", content.site, "heroText", "textarea"],
-    ["URL фона главной", content.site, "heroImage", "text", "Рекомендуется 2400 × 1350 px. Пустое поле возвращает стандартный фон."],
+    ["Свой фон главной (URL)", content.site, "heroImage", "text", "Рекомендуется 2400 × 1350 px. Пустое поле включает фон выбранной темы. Свой фон применяется ко всем трём темам без цветовых фильтров."],
     ["Подвал", content.site, "footer"],
   ]);
-  root.appendChild(uploadField('Загрузить фон главной страницы', content.site, 'heroImage'));
+  root.appendChild(uploadField('Загрузить свой фон главной страницы', content.site, 'heroImage'));
   addFields(twitch, content.twitch, [
     ["Twitch-канал", content.twitch, "channel", "text", "Только ник без twitch.tv/."],
     ["Заголовок блока", content.twitch, "title"],
@@ -951,6 +1111,7 @@ function renderAll() {
   if (document.body.classList.contains('admin-unlocked')) markDirty();
   ensureContentShape();
   renderSite();
+  renderHome();
   renderNews();
   renderVolumes();
   renderBallads();

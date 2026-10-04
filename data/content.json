@@ -6,7 +6,7 @@
     "heroTitle": "",
     "heroText": "Открой для себя что-то новое...",
     "footer": "© 2026 Скетчбук Элазара | Дмитрий Колесников, Артём Яковлев",
-    "heroImage": "/assets/uploads/1789335451170-43-3434-2--crop.png"
+    "heroImage": ""
   },
   "twitch": {
     "channel": "twitch",
@@ -256,7 +256,7 @@
       "image": "/assets/locations/blue-seal.png"
     }
   ],
-  "updatedAt": "2026-09-13T21:38:29.461Z",
+  "updatedAt": "2026-10-04T12:01:51.949Z",
   "map": {
     "image": ""
   },
@@ -381,5 +381,99 @@
         }
       ]
     }
-  ]
+  ],
+  "home": {
+    "introEyebrow": "Добро пожаловать в DUNGEON",
+    "introTitle": "Выбери свою историю, fucking slave",
+    "hero": {
+      "kicker": "Скетчбук Элазара",
+      "icon": "sparkles",
+      "actionText": "Исследовать мир",
+      "actionUrl": "/wiki.html",
+      "stamp": "ELAZAR",
+      "stampCaption": "WORLD ARCHIVE",
+      "positionX": 50,
+      "positionY": 50,
+      "images": {
+        "ember": "/assets/themes/fantasy-ember.png",
+        "arcane": "/assets/themes/fantasy-arcane.png",
+        "mono": "/assets/themes/fantasy-mono.png"
+      }
+    },
+    "cards": {
+      "map": {
+        "label": "Путеводитель",
+        "title": "Карта мира",
+        "description": "Места, хранящие свои тайны",
+        "url": "/map.html",
+        "icon": "compass",
+        "image": "",
+        "meta": "",
+        "showCount": true
+      },
+      "chronicles": {
+        "label": "Доска объявлений",
+        "title": "Хроники",
+        "description": "",
+        "url": "#chronicles",
+        "icon": "scroll-text",
+        "image": "",
+        "meta": "",
+        "showCount": true
+      },
+      "ballads": {
+        "label": "Музыка",
+        "title": "Баллады",
+        "description": "У каждого мира свой голос",
+        "url": "/ballads.html",
+        "icon": "headphones",
+        "image": "",
+        "meta": "",
+        "showCount": true
+      },
+      "legends": {
+        "label": "Видеоархив",
+        "title": "Сказания",
+        "description": "Истории, оживающие на экране",
+        "url": "/legends.html",
+        "icon": "clapperboard",
+        "image": "",
+        "meta": "",
+        "showCount": true
+      },
+      "wiki": {
+        "label": "Энциклопедия",
+        "title": "Некрономикон",
+        "description": "Лица и легенды этого мира",
+        "url": "/wiki.html",
+        "icon": "book-open",
+        "image": "",
+        "meta": "",
+        "showCount": true
+      },
+      "sources": {
+        "label": "На связи",
+        "title": "Мастерская",
+        "description": "Соцсети и прямой эфир",
+        "url": "#sources",
+        "icon": "radio",
+        "image": "",
+        "meta": "",
+        "showCount": true
+      }
+    },
+    "socialIds": "vk,telegram,youtube",
+    "portraitIds": "",
+    "panels": {
+      "eyebrow": "Скетчбук Элазара",
+      "chroniclesTitle": "Доска объявлений",
+      "sourcesTitle": "Соцсети и источники",
+      "streamLinkText": "Открыть Twitch"
+    },
+    "appearance": {
+      "backgroundStyle": "atlas",
+      "backgroundStrength": 30,
+      "backgroundImage": ""
+    }
+  }
 }

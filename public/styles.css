@@ -17,6 +17,7 @@
   --panel-rgb: 23, 12, 18;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
   --theme-bg-image: url("/assets/themes/ember-bg.png");
+  --theme-hero-image: url("/assets/themes/fantasy-ember.png");
 }
 
 :root[data-theme="arcane"],
@@ -38,6 +39,7 @@ body[data-theme="arcane"] {
   --cyan-rgb: 98, 255, 215;
   --panel-rgb: 16, 16, 31;
   --theme-bg-image: url("/assets/themes/arcane-bg.png");
+  --theme-hero-image: url("/assets/themes/fantasy-arcane.png");
 }
 
 :root[data-theme="mono"],
@@ -59,6 +61,7 @@ body[data-theme="mono"] {
   --cyan-rgb: 217, 217, 217;
   --panel-rgb: 18, 18, 18;
   --theme-bg-image: url("/assets/themes/mono-bg.png");
+  --theme-hero-image: url("/assets/themes/fantasy-mono.png");
 }
 
 * {
@@ -398,22 +401,13 @@ textarea {
 .hero-media {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(7, 4, 8, 0.96) 0%, rgba(7, 4, 8, 0.72) 42%, rgba(7, 4, 8, 0.22) 100%),
-    radial-gradient(circle at 74% 25%, rgba(var(--ember-rgb), 0.48), transparent 14rem),
-    url("/assets/dark-fantasy-hero.jpg");
+  background-image:
+    var(--hero-overlay, linear-gradient(90deg, rgba(0, 0, 0, 0.62), transparent 48%, rgba(0, 0, 0, 0.5))),
+    linear-gradient(0deg, var(--bg), transparent 35%),
+    var(--custom-hero-image, var(--theme-hero-image));
   background-size: cover;
   background-position: center;
-  filter: saturate(1.15) contrast(1.08);
-  transform: scale(1.01);
-}
-
-[data-theme="arcane"] .hero-media {
-  background:
-    linear-gradient(90deg, rgba(5, 7, 17, 0.96) 0%, rgba(5, 7, 17, 0.74) 42%, rgba(5, 7, 17, 0.25) 100%),
-    radial-gradient(circle at 74% 25%, rgba(var(--ember-rgb), 0.54), transparent 14rem),
-    radial-gradient(circle at 42% 58%, rgba(var(--cyan-rgb), 0.24), transparent 18rem),
-    url("/assets/dark-fantasy-hero.jpg");
+  background-repeat: no-repeat;
 }
 
 .hero-copy {

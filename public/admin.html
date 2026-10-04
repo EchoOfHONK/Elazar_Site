@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Админка | AYROHANT</title>
-    <link rel="stylesheet" href="/styles.css?v=17">
-    <link rel="stylesheet" href="/cinema.css?v=1">
+    <link rel="stylesheet" href="/styles.css?v=19">
+    <link rel="stylesheet" href="/cinema.css?v=3">
   </head>
   <body class="admin-body">
     <div class="noise" aria-hidden="true"></div>
@@ -52,6 +52,7 @@
         </div>
         <aside class="admin-sidebar">
           <a href="#site" data-admin-nav="site">Основное</a>
+          <a href="#home-admin" data-admin-nav="home-admin">Главная</a>
           <a href="#twitch-admin" data-admin-nav="twitch-admin">Twitch</a>
           <a href="#news-admin" data-admin-nav="news-admin">Новости <span data-count="news">0</span></a>
           <a href="#volumes" data-admin-nav="volumes">Манга <span data-count="volumes">0</span></a>
@@ -66,6 +67,11 @@
           <section class="admin-panel" id="site">
             <div class="panel-title"><div><h2>Основное</h2><p>Название, первый экран и подвал сайта.</p></div></div>
             <div class="form-grid" data-site-fields></div>
+          </section>
+          <section class="admin-panel" id="home-admin">
+            <div class="panel-title"><div><h2>Главная страница</h2><p>Карточки, оформление и тексты главной.</p></div></div>
+            <p class="home-settings-note">Здесь меняются тексты, изображения и ссылки карточек. Новости, музыка, персонажи и адреса соцсетей редактируются в своих разделах; счётчики обновляются автоматически.</p>
+            <div class="stack" data-home-fields></div>
           </section>
           <section class="admin-panel" id="twitch-admin">
             <div class="panel-title"><div><h2>Twitch</h2><p>Канал без ссылки целиком: только ник после twitch.tv/.</p></div></div>
@@ -110,6 +116,7 @@
     </main>
 
     <script src="/nav.js?v=17"></script>
-    <script src="/admin.js?v=17"></script>
+    <script src="/home-settings.js?v=2"></script>
+    <script src="/admin.js?v=19"></script>
   </body>
 </html>

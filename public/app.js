@@ -75,8 +75,13 @@ function renderAvatarButton(entity, kind) {
 }
 
 function renderSiteInfo() {
-  const heroImage = content.site.heroImage || '/assets/cinema-hero.png';
-  document.querySelector('.hero-media')?.style.setProperty('--hero-image', `url(${JSON.stringify(heroImage)})`);
+  const heroMedia = document.querySelector(".hero-media");
+  const customHeroImage = String(content.site.heroImage || "").trim();
+  if (customHeroImage) {
+    heroMedia?.style.setProperty("--custom-hero-image", `url(${JSON.stringify(customHeroImage)})`);
+  } else {
+    heroMedia?.style.removeProperty("--custom-hero-image");
+  }
   document.title = `${content.site.title} | ${content.site.subtitle}`;
   setText("[data-site-title]", content.site.title);
   setText("[data-site-subtitle]", content.site.subtitle);
